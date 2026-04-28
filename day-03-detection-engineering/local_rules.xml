@@ -1,0 +1,81 @@
+<!-- ============================================================ -->
+<!-- Local Rules — Custom Detection Rules                        -->
+<!-- Author: Ronak Mishra                                        -->
+<!-- Lab: Enterprise Wazuh SIEM Lab                              -->
+<!-- Wazuh Version: 4.14.4                                       -->
+<!-- ============================================================ -->
+
+<group name="local,windows,custom_detections,">
+
+  <!-- ============================================ -->
+  <!-- RULE 1: PowerShell Encoded Command           -->
+  <!-- MITRE: T1059.001 - PowerShell               -->
+  <!-- ============================================ -->
+  <rule id="100002" level="12">
+    <if_sid>67027</if_sid>
+    <field name="win.eventdata.commandLine" type="pcre2">(?i)-enc|-encodedcommand</field>
+    <description>ALERT: PowerShell encoded command execution - possible obfuscated attack</description>
+    <mitre>
+      <id>T1059.001</id>
+    </mitre>
+    <group>attack,powershell,obfuscation,</group>
+  </rule>
+
+  <!-- ============================================ -->
+  <!-- RULE 2: PowerShell Download Cradle           -->
+  <!-- MITRE: T1105 - Ingress Tool Transfer         -->
+  <!-- ============================================ -->
+  <rule id="100003" level="12">
+    <if_sid>67027</if_sid>
+    <field name="win.eventdata.commandLine" type="pcre2">(?i)DownloadString|DownloadFile|Invoke-WebRequest|iwr\s|wget\s|curl\s</field>
+    <description>ALERT: PowerShell download cradle detected - possible malware download</description>
+    <mitre>
+      <id>T1105</id>
+    </mitre>
+    <group>attack,powershell,download,</group>
+  </rule>
+
+  <!-- ============================================ -->
+  <!-- RULE 3: Office App Spawning Shell            -->
+  <!-- MITRE: T1566.001 - Spearphishing Attachment  -->
+  <!-- ============================================ -->
+  <rule id="100004" level="15">
+    <if_sid>67027</if_sid>
+    <field name="win.eventdata.parentProcessName" type="pcre2">(?i)winword\.exe|excel\.exe|powerpnt\.exe|outlook\.exe</field>
+    <field name="win.eventdata.newProcessName" type="pcre2">(?i)cmd\.exe|powershell\.exe|wscript\.exe|cscript\.exe|mshta\.exe</field>
+    <description>CRITICAL: Office application spawned shell process - macro attack likely</description>
+    <mitre>
+      <id>T1566.001</id>
+    </mitre>
+    <group>attack,macro,office,critical,</group>
+  </rule>
+
+  <!-- ============================================ -->
+  <!-- RULE 4: New Local User Account Created       -->
+  <!-- MITRE: T1136.001 - Create Local Account      -->
+  <!-- ============================================ -->
+  <rule id="100005" level="10">
+    <if_sid>60103</if_sid>
+    <field name="win.system.eventID">4720</field>
+    <description>ALERT: New Windows user account created - verify if authorized</description>
+    <mitre>
+      <id>T1136.001</id>
+    </mitre>
+    <group>attack,persistence,account_creation,</group>
+  </rule>
+
+  <!-- ============================================ -->
+  <!-- RULE 5: Brute Force - Multiple Failed Logons -->
+  <!-- MITRE: T1110 - Brute Force                   -->
+  <!-- ============================================ -->
+  <rule id="100006" level="12" frequency="5" timeframe="120">
+    <if_matched_sid>60122</if_matched_sid>
+    <same_field>win.eventdata.ipAddress</same_field>
+    <description>ALERT: Multiple failed Windows logons from same IP - possible brute force</description>
+    <mitre>
+      <id>T1110</id>
+    </mitre>
+    <group>attack,brute_force,authentication,</group>
+  </rule>
+
+</group>
