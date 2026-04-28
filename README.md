@@ -3,7 +3,7 @@
 A 6-day hands-on home lab simulating an enterprise Security Operations Center environment. Built on Wazuh 4.14.4 with Windows 11 and Kali Linux endpoints, this project covers the full SOC workflow — from initial deployment through detection engineering, attack simulation, incident response, and threat intelligence integration.
 
 **Built by:** Ronak Mishra — SOC Analyst, Ottawa, ON  
-**GitHub:** [github.com/ronakmishra28](https://github.com/ronakmishra28) | **Medium:** [@ronakonweb](https://medium.com/@ronakonweb) | **LinkedIn:** [linkedin.com/in/ronakmishra28](https://linkedin.com/in/ronakmishra28)  
+**GitHub:** [github.com/ronakmishra28](https://github.com/ronakmishra) | **Medium:** [@ronakonweb](https://medium.com/@ronakonweb) | **LinkedIn:** [linkedin.com/in/ronakmishra28](https://linkedin.com/in/ronakmishra)  
 **Lab Duration:** April 18–23, 2026  
 **Status:** Complete
 
@@ -237,6 +237,6 @@ wazuh-enterprise-siem-lab/
 
 ## Connect
 
-**LinkedIn:** [linkedin.com/in/ronakmishra28](https://linkedin.com/in/ronakmishra28)  
+**LinkedIn:** [linkedin.com/in/ronakmishra28](https://linkedin.com/in/ronakmishra)  
 **Portfolio:** [ronakmishra28.github.io](https://ronakmishra28.github.io)  
 **Medium:** [@ronakonweb](https://medium.com/@ronakonweb)
