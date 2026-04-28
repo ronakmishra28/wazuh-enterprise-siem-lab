@@ -237,6 +237,6 @@ wazuh-enterprise-siem-lab/
 
 ## Connect
 
-**LinkedIn:** [linkedin.com/in/ronakmishra28](https://linkedin.com/in/ronakmishra)  
+**LinkedIn:** [linkedin.com/in/ronakmishra](https://linkedin.com/in/ronakmishra)  
 **Portfolio:** [ronakmishra28.github.io](https://ronakmishra28.github.io)  
 **Medium:** [@ronakonweb](https://medium.com/@ronakonweb)
